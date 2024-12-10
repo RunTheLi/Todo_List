@@ -1,3 +1,4 @@
+//index.js
 import "./styles.css";
 import todo from "./export.js";
 import addProjectList from "./addproject.js";
@@ -5,7 +6,16 @@ import addtaskfunction from "./addtask.js";
 
 // Event listener for the Add Project button
 document.getElementById("add-project").addEventListener('click', () => {
-    hideButton(); // Hide the "Add Todo" button when "Add Project" is clicked
+    // เรียกฟังก์ชัน hideButton() ที่จะซ่อนปุ่ม "Add Todo"
+    hideButton();
+    
+    // ใช้ getElementsByClassName เพื่อเลือกกล่อง todo ทั้งหมดที่มีคลาส "todo-note"
+    const todoNotes = document.getElementsByClassName("todo-note");
+    
+    // ลูปผ่านทุกๆ todoNote และทำให้ display เป็น "none"
+    for (let todo of todoNotes) {
+        todo.style.display = "none";
+    }
 });
 
 // Function to hide the "Add Todo" button
