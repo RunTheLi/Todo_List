@@ -63,3 +63,57 @@ button:hover {
 button i {
   margin-right: 10px;
 }
+
+.todo-note {
+  width: 200px;
+  height: 360px;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: whitesmoke;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input, textarea, option, select {
+  border-radius: 10px;
+  border: 1px black;
+}
+
+h4 {
+  color: #333;
+  margin-bottom: 1px;
+}
+
+.add-button {
+  height: 40px;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+}
+
+.delete-button {
+  height: 40px;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+}
+
+.add-button:hover, .delete-button:hover {
+  background-color: #555;
+}
+
+.todo-input {
+  margin-bottom: 1px;
+}
