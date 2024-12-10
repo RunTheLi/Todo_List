@@ -1,5 +1,59 @@
 /* styles.css */
 body {
-    background-color: rebeccapurple;
-  }
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+#outer-frame {
+  display: flex;
+  height: 800px;
+  flex-direction: row; /* This makes the inner frame and display div appear side by side */
+  margin: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Outer shadow */
+  border-radius: 10px; /* Optional: adds rounded corners to outer frame */
+  padding: 20px;
+  background-color: #fff; /* Set a background color to see the shadow effect */
+}
+
+#inner-frame {
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column; /* This makes the buttons stack vertically */
+  width: 200px; /* Adjust width as needed */
+  margin-right: 20px; /* Space between buttons and display section */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Inner shadow for the frame */
+  border-radius: 5px; /* Optional: adds rounded corners to inner frame */
+}
+button {
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: transparent;
+  color: black;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: gray;
+}
+
+#Display {
+  flex-grow: 1; /* Ensures this section takes up remaining space */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.5s ease;
+}
+
+#descrip {
+    width: 100px;
+    height: 10px;
+    margin-left: 105px;
+    margin-top: 20px;
+}
   
