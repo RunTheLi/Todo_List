@@ -1,4 +1,4 @@
-// index.js
+// export.js
 export default function todo() {
     const addTodoBtn = document.getElementById("add-todo"); // Ensure the button exists
     const todosContainer = document.getElementById("todos"); // The list where todos will be added
@@ -65,7 +65,8 @@ export default function todo() {
          deleteTask.addEventListener("click", () => {
             displayContainer.removeChild(boxTodo); // Remove the todo box
         });
-
+        
+        
         // Append all fields to the boxTodo div
         boxTodo.appendChild(nameInput);
         boxTodo.appendChild(prioritySelect);
