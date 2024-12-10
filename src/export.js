@@ -1,14 +1,21 @@
-// export.js
 export default function todo() {
     const addTodoBtn = document.getElementById("add-todo"); // Ensure the button exists
     const todosContainer = document.getElementById("todos"); // The list where todos will be added
     const displayContainer = document.getElementById("Display"); // The container to insert below the button
 
+    // เช็คว่ามีการสร้าง Todo ก่อนแล้วหรือยัง ถ้ามีแล้วจะไม่สร้างเพิ่ม
+    if (addTodoBtn.hasAttribute("data-initialized")) {
+        return; // ถ้ามี attribute นี้แล้วก็จะไม่สร้าง Todo อีก
+    }
+
+    // ตั้งค่า attribute เพื่อไม่ให้สร้าง Todo หลายครั้ง
+    addTodoBtn.setAttribute("data-initialized", "true");
+
     addTodoBtn.addEventListener("click", () => {
         const boxTodo = document.createElement("div");
         boxTodo.classList.add("todo-note");
         
-        //create a name input
+        // Create a name input
         const nameInput = document.createElement("input");
         nameInput.type = "text";
         nameInput.placeholder = "Please enter your name";
@@ -53,20 +60,19 @@ export default function todo() {
         dateInput.type = "date";
         dateInput.classList.add("todo-input");
 
-         // Create the "Add Task" button
-         const addTaskBtn = document.createElement("button");
-         addTaskBtn.textContent = "Add Task";
-         addTaskBtn.classList.add("add-button");
+        // Create the "Add Task" button
+        const addTaskBtn = document.createElement("button");
+        addTaskBtn.textContent = "Add Task";
+        addTaskBtn.classList.add("add-button");
 
-         const deleteTask = document.createElement("button");
-         deleteTask.textContent = "Delete";
-         deleteTask.classList.add("delete-button")
+        const deleteTask = document.createElement("button");
+        deleteTask.textContent = "Delete";
+        deleteTask.classList.add("delete-button");
 
-         deleteTask.addEventListener("click", () => {
+        deleteTask.addEventListener("click", () => {
             displayContainer.removeChild(boxTodo); // Remove the todo box
         });
-        
-        
+
         // Append all fields to the boxTodo div
         boxTodo.appendChild(nameInput);
         boxTodo.appendChild(prioritySelect);
@@ -75,7 +81,6 @@ export default function todo() {
         boxTodo.appendChild(dateInput);
         boxTodo.appendChild(addTaskBtn);
         boxTodo.appendChild(deleteTask);
-        
 
         // Insert the new todo box directly below the "Add Todo" button
         displayContainer.appendChild(boxTodo);
