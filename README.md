@@ -7,7 +7,7 @@ At this point you’ve already had a fair amount of practice using the various t
 # The todo list
 Todo lists are a staple in beginning webdev tutorials, the implementation can be basic. There is, however, a lot of room for improvement and many features that can be added.
 
-// ---- Not all Buttons are functional ---- //
+// ---- Not all Buttons are functional (feature add) ---- //
 
 // ---- https://runtheli.github.io/Todo_List/ ----//
 
