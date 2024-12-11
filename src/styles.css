@@ -90,22 +90,24 @@ h3 {
 #outer-frame {
   display: flex;
   height: auto;
-  flex-direction: row; /* This makes the inner frame and display div appear side by side */
+  flex-direction: row;
   margin: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Outer shadow */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 20px;
-  background-color: #fff; /* Set a background color to see the shadow effect */
+  background-color: #fff;
 }
 
 #inner-frame {
   background-color: whitesmoke;
-  display: block;
+  display: flex;
   flex-direction: column;
-  width: 150px; 
-  margin-right: 20px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-  border-radius: 5px; 
+  height: auto;
+  width: 200px; /* กำหนดขนาดคงที่ */
+  margin-right: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  flex-shrink: 0; /* ไม่ให้ย่อเล็กลง */
 }
 
 button {
@@ -127,13 +129,14 @@ button:hover {
 
 #Display {
   display: flex;
-  height: 900px;
-  flex-grow: 10;
+  flex-wrap: wrap;
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: opacity 0.5s ease;
+  gap: 20px;
+  flex-grow: 1; /* ทำให้ขยายได้เฉพาะพื้นที่ที่เหลือ */
+  min-width: 0; /* ป้องกันการล้นขอบ */
 }
 
 button i {
