@@ -53,7 +53,7 @@ button:hover {
 }
 
 #Display {
-  flex-grow: 1;
+  flex-grow: 10;
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
@@ -133,3 +133,7 @@ h4 {
   gap: 10px;
 }
 
+#add-todo {
+  height: auto;
+  width: auto;
+}
