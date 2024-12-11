@@ -1,22 +1,19 @@
-//export.js
 export default function todo() {
-    const addTodoBtn = document.getElementById("add-todo"); // Ensure the button exists
-    const todosContainer = document.getElementById("todos"); // The list where todos will be added
-    const displayContainer = document.getElementById("Display"); // The container to insert below the button
+    const addTodoBtn = document.getElementById("add-todo"); 
+    const todosContainer = document.getElementById("todos"); 
+    const displayContainer = document.getElementById("Display"); 
 
-    // เช็คว่ามีการสร้าง Todo ก่อนแล้วหรือยัง ถ้ามีแล้วจะไม่สร้างเพิ่ม
+    // เช็ค attribute data-initialized เพื่อป้องกันการสร้าง Event Listener ซ้ำ
     if (addTodoBtn.hasAttribute("data-initialized")) {
-        return; // ถ้ามี attribute นี้แล้วก็จะไม่สร้าง Todo อีก
+        return;
     }
-
-    // ตั้งค่า attribute เพื่อไม่ให้สร้าง Todo หลายครั้ง
     addTodoBtn.setAttribute("data-initialized", "true");
 
     addTodoBtn.addEventListener("click", () => {
         const boxTodo = document.createElement("div");
         boxTodo.classList.add("todo-note");
-        
-        // Create a name input
+
+        // สร้างฟิลด์ข้อมูลสำหรับ todo
         const nameInput = document.createElement("input");
         nameInput.type = "text";
         nameInput.placeholder = "Please enter your name";
@@ -26,7 +23,6 @@ export default function todo() {
         textDescription.textContent = "Good Day!";
         boxTodo.appendChild(textDescription);
 
-        // Create the Priority dropdown
         const prioritySelect = document.createElement("select");
         const lowOption = document.createElement("option");
         lowOption.value = "low";
@@ -45,36 +41,76 @@ export default function todo() {
         prioritySelect.appendChild(highOption);
         prioritySelect.classList.add("todo-input");
 
-        // Create the Project Name input field
         const projectInput = document.createElement("input");
         projectInput.type = "text";
         projectInput.placeholder = "Enter project name";
         projectInput.classList.add("todo-input");
 
-        // Create the Description textarea
         const descriptionInput = document.createElement("textarea");
         descriptionInput.placeholder = "Enter description";
         descriptionInput.classList.add("todo-input");
 
-        // Create the Date input field
         const dateInput = document.createElement("input");
         dateInput.type = "date";
         dateInput.classList.add("todo-input");
 
-        // Create the "Add Task" button
         const addTaskBtn = document.createElement("button");
         addTaskBtn.textContent = "Add Task";
         addTaskBtn.classList.add("add-button");
 
+        addTaskBtn.addEventListener("click", () => {
+            const savedTodo = document.createElement("div");
+            savedTodo.classList.add("saved-todo");
+        
+            savedTodo.innerHTML = `
+                <div class="taskShow">
+                    <h4 class="task-name">${nameInput.value}</h4>
+                    <p class="task-priority">Priority: ${prioritySelect.value}</p>
+                    <p class="task-project">Project: ${projectInput.value}</p>
+                    <p class="task-description">Description: ${descriptionInput.value}</p>
+                    <p class="task-due-date">Due Date: ${dateInput.value}</p>
+                    <div class="task-actions">
+                        <button class="edit-button">Edit</button>
+                        <button class="delete-button">Delete</button>
+                    </div>
+                </div>
+            `;
+        
+            displayContainer.appendChild(savedTodo);
+        
+            displayContainer.removeChild(boxTodo);
+        
+            const editButton = savedTodo.querySelector(".edit-button");
+            const deleteButton = savedTodo.querySelector(".delete-button");
+        
+            editButton.addEventListener("click", () => {
+
+                nameInput.value = savedTodo.querySelector(".task-name").textContent;
+                prioritySelect.value = savedTodo.querySelector(".task-priority").textContent.split(": ")[1];
+                projectInput.value = savedTodo.querySelector(".task-project").textContent.split(": ")[1];
+                descriptionInput.value = savedTodo.querySelector(".task-description").textContent.split(": ")[1];
+                dateInput.value = savedTodo.querySelector(".task-due-date").textContent.split(": ")[1];
+        
+                displayContainer.removeChild(savedTodo);
+        
+                // Show boxTodo for editing
+                displayContainer.appendChild(boxTodo);
+            });
+        
+            deleteButton.addEventListener("click", () => {
+                displayContainer.removeChild(savedTodo);
+            });
+        });
+        
         const deleteTask = document.createElement("button");
         deleteTask.textContent = "Delete";
         deleteTask.classList.add("delete-button");
 
         deleteTask.addEventListener("click", () => {
-            displayContainer.removeChild(boxTodo); // Remove the todo box
+            displayContainer.removeChild(boxTodo);
         });
 
-        // Append all fields to the boxTodo div
+        // Append elements to boxTodo
         boxTodo.appendChild(nameInput);
         boxTodo.appendChild(prioritySelect);
         boxTodo.appendChild(projectInput);
@@ -83,7 +119,7 @@ export default function todo() {
         boxTodo.appendChild(addTaskBtn);
         boxTodo.appendChild(deleteTask);
 
-        // Insert the new todo box directly below the "Add Todo" button
+        // Append boxTodo to the display container
         displayContainer.appendChild(boxTodo);
     });
-};
+}
