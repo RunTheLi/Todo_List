@@ -1,9 +1,82 @@
 /*styles.css*/
+@media (min-width: 720px) and (max-width: 1200px) {
+  #outer-frame {
+    flex-direction: row; /* Arrange side by side on tablets and laptops */
+  }
+
+  #Display {
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .todo-note, .taskShow {
+    width: calc(50% - 20px); /* Two items per row */
+  }
+
+  #add-todo {
+    width: auto; /* Keep button size consistent */
+  }
+}
+
+@media (min-width: 1200px) {
+  #Display {
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .todo-note, .taskShow {
+    width: calc(33% - 20px); /* Three items per row on larger screens */
+  }
+}
+
+@media (max-width: 720px) {
+  #outer-frame {
+    flex-direction: column; /* Stack inner frame and display vertically */
+    padding: 10px;
+  }
+
+  #inner-frame {
+    width: 100%; /* Ensure it takes full width */
+    margin-right: 0;
+  }
+
+  #Display {
+    flex-direction: column; /* Stack todos vertically */
+    gap: 20px;
+    width: 100%;
+  }
+
+  .todo-note, .taskShow {
+    width: 100%; /* Make them take full width on smaller screens */
+    margin-right: 0;
+  }
+
+  #add-todo {
+    width: 100%; /* Make button full width */
+    margin-right: 0;
+  }
+}
+
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background-image: url(https://papers.co/wallpaper/papers.co-sc96-rainbow-color-cloud-blur-35-3840x2160-4k-wallpaper.jpg);
+}
+
+h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  height: 60px;
+  width: 200px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #descrip {
@@ -16,7 +89,7 @@ body {
 
 #outer-frame {
   display: flex;
-  height: 800px;
+  height: auto;
   flex-direction: row; /* This makes the inner frame and display div appear side by side */
   margin: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Outer shadow */
@@ -27,12 +100,12 @@ body {
 
 #inner-frame {
   background-color: whitesmoke;
-  display: flex;
-  flex-direction: column; /* This makes the buttons stack vertically */
-  width: 200px; /* Adjust width as needed */
-  margin-right: 20px; /* Space between buttons and display section */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Inner shadow for the frame */
-  border-radius: 5px; /* Optional: adds rounded corners to inner frame */
+  display: block;
+  flex-direction: column;
+  width: 150px; 
+  margin-right: 20px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  border-radius: 5px; 
 }
 
 button {
@@ -53,11 +126,13 @@ button:hover {
 }
 
 #Display {
+  display: flex;
+  height: 900px;
   flex-grow: 10;
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: opacity 0.5s ease;
 }
 
@@ -67,14 +142,15 @@ button i {
 
 .todo-note {
   width: 200px;
-  height: 360px;
+  height: 400px;
   margin-top: 20px;
   padding: 10px;
+  margin-right: 20px;
   background-color: whitesmoke;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   color: white;
   border-radius: 12px;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   gap: 10px;
 }
@@ -120,20 +196,37 @@ h4 {
 }
 
 .taskShow {
-  width: 200px;
-  height: 360px;
+  display: flex;
+  width: auto;
+  height: 400px;
   margin-top: 20px;
   padding: 10px;
+  margin-right: 20px;
+  font-size: 14px;
   background-color: whitesmoke;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   color: black;
   border-radius: 12px;
-  display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
 #add-todo {
-  height: auto;
+  height: 50px;
+  width: 130px;
+  border-radius: 30px;
+  margin-right: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-top: 10px;
+  background-color: transparent;
+  height: 30px;
   width: auto;
+  color: white;
+  font-size: 14px;
 }

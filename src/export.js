@@ -27,21 +27,25 @@ export default function todo() {
     function createTodoBox() {
         const boxTodo = document.createElement("div");
         boxTodo.classList.add("todo-note");
-
+    
+        // Create heading and place it at the top
+        const headingText = document.createElement('h4');
+        headingText.textContent = "GoodDay!";
+    
         const nameInput = createInput("text", "Please enter your name");
         const prioritySelect = createPriorityDropdown();
         const projectInput = createInput("text", "Enter project name");
         const descriptionInput = createInput("textarea", "Enter description");
         const dateInput = createInput("date", "");
-
+    
         const addTaskBtn = document.createElement("button");
         addTaskBtn.textContent = "Add Task";
         addTaskBtn.classList.add("add-button");
-
+    
         const deleteTaskBtn = document.createElement("button");
         deleteTaskBtn.textContent = "Delete";
         deleteTaskBtn.classList.add("delete-button");
-
+    
         // Add Task functionality
         addTaskBtn.addEventListener("click", () => {
             const todoData = {
@@ -52,19 +56,20 @@ export default function todo() {
                 description: descriptionInput.value,
                 dueDate: dateInput.value,
             };
-
+    
             addTodoToStorage(todoData); // Save todo to localStorage
             const savedTodo = createSavedTodo(todoData);
             displayContainer.appendChild(savedTodo);
             displayContainer.removeChild(boxTodo);
         });
-
+    
         // Delete Task functionality
         deleteTaskBtn.addEventListener("click", () => {
             displayContainer.removeChild(boxTodo);
         });
-
-        // Append elements to boxTodo
+    
+        // Append heading first, followed by the input elements
+        boxTodo.appendChild(headingText);
         boxTodo.appendChild(nameInput);
         boxTodo.appendChild(prioritySelect);
         boxTodo.appendChild(projectInput);
@@ -72,9 +77,10 @@ export default function todo() {
         boxTodo.appendChild(dateInput);
         boxTodo.appendChild(addTaskBtn);
         boxTodo.appendChild(deleteTaskBtn);
-
+    
         return boxTodo;
     }
+    
 
     // Function to create a saved todo element
     function createSavedTodo(todoData) {
